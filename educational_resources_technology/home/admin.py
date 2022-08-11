@@ -8,17 +8,36 @@ from .models import Resource, Wifi
 from django.contrib import messages
 import os
 
+def wifi_connect(ssid, pwd):
+    ssid = '"' + ssid + '"'
+    pwd = '"' + pwd + '"'
+
+    # Reconfigure goal wifi and key in line 6 and 7 of wpa_supplicant.conf
+    cm = "sudo sed -i '6s/.*/ ssid=" + ssid + "/' /etc/wpa_supplicant/wpa_supplicant.conf"
+    os.system(cm)
+    cm = "sudo sed -i '7s/.*/ psk=" + pwd + "/' /etc/wpa_supplicant/wpa_supplicant.conf"
+    os.system(cm)
+
+    # Reboot to activate new configuration
+    cm = "sudo reboot"
+    os.system(cm)
+
 @admin.action(description="Connect to Wifi network")
 def connect(self, request, queryset):
     if len(queryset) > 1:
         messages.error(request, "You can only select one Wifi network")
         return HttpResponseRedirectToReferrer(request)
-    interface = 'wlan0'
+
     name = queryset.first().name
     password = queryset.first().password
 
-    os.system(f'iwconfig {interface} essid {name} key {password}')
-    messages.success(request, f'Connected to {name} successfully')
+    try:
+        wifi_connect(name, password)
+        messages.success(request, f'Connected to {name} successfully')
+    except:
+        messages.error(request, f'Could not connect to {name}')
+
+
 
 class WifiAdmin(ExtraButtonsMixin, admin.ModelAdmin):
     actions = [connect]
