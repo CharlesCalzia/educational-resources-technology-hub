@@ -7,9 +7,9 @@ services:
     ports:
       - 8000:8000
     volumes:
-      - ./educational_resources_technology
+      - ./educational_resources_technology:/educational_resources_technology
     environment:
-      - SECRET_KEY=devsecretkey
+      - SECRET_KEY=django-insecure-l^zerl=#@h@a2@1#j^&ki-o8z#^jw1j3ih)7qkxcj5p^@c(1u9
       - DEBUG=1
       - DB_HOST=db
       - DB_NAmE=devdb
@@ -17,6 +17,8 @@ services:
       - DB_PASS=devpass
     depends_on:
       - db
+      - kiwix
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
   
   db:
     image: postgres
@@ -24,3 +26,9 @@ services:
       - POSTGRES_DB=devdb
       - POSTGRES_USER=devuser
       - POSTGRES_PASSWORD=devpass
+
+  kiwix:
+    image: kiwix/kiwix-serve
+    ports:
+      - 8080:8080
+    command: wiktionary_en_simple_all_nopic_2022-07.zim
