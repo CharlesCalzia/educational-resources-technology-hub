@@ -8,12 +8,6 @@ COPY requirements.txt /educational_resources_technology/
 RUN pip install -r requirements.txt
 COPY . /educational_resources_technology/
 
-
-FROM kiwix/kiwix-tools:$VERSION
-LABEL org.opencontainers.image.source https://github.com/openzim/kiwix-tools
-
-# expose kiwix-serve default port and workdir
-EXPOSE 80
 VOLUME /educational_resources_technology
 WORKDIR /educational_resources_technology
 

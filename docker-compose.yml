@@ -19,16 +19,10 @@ services:
       - db
       - kiwix
     command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
-  
+
   db:
     image: postgres
     environment:
       - POSTGRES_DB=devdb
       - POSTGRES_USER=devuser
       - POSTGRES_PASSWORD=devpass
-
-  kiwix:
-    image: kiwix/kiwix-serve
-    ports:
-      - 8080:8080
-    command: wiktionary_en_simple_all_nopic_2022-07.zim
