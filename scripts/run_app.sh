@@ -1,0 +1,1 @@
+python ../educational_resources_technology/manage.py runserver
