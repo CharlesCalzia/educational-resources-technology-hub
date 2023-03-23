@@ -10,7 +10,6 @@ def index(request):
     resources = Resource.objects.all()
     for resource in resources:
         resource.image_src = resource.image.path.replace('/educational_resources_technology/', '').replace('home/static','')
-        print(resource.image_src)
         
     data = {"resources": resources}
     return render(request, 'index.html', data)
