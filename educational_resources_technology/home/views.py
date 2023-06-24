@@ -9,13 +9,17 @@ from home.models import Resource
 def index(request):
     resources = Resource.objects.all()
     for resource in resources:
-        resource.image_src = resource.image.path.replace('/educational_resources_technology/', '').replace('home/static','')
-        
+        resource.image_src = resource.image.path.replace(
+            "/educational_resources_technology/", ""
+        ).replace("home/static", "")
+
     data = {"resources": resources}
-    return render(request, 'index.html', data)
+    return render(request, "index.html", data)
+
 
 def about(request):
-    return render(request, 'about.html')
+    return render(request, "about.html")
+
 
 def support(request):
-    return render(request, 'support.html')
+    return render(request, "support.html")
