@@ -26,7 +26,7 @@ chars = "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)"
 SECRET_KEY = get_random_string(50, chars)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False  # bool(int(os.environ.get("DEBUG", 0)))
+DEBUG = bool(int(os.environ.get("DEBUG", 0)))
 
 ALLOWED_HOSTS = ["*"]
 ALLOWED_HOSTS.extend(filter(None, os.environ.get("ALLOWED_HOSTS", "").split(",")))

@@ -44,6 +44,11 @@ def auto_delete_file_on_delete(sender, instance, **kwargs):
             os.remove(instance.image.path)
 
 
+class LinkClick(models.Model):
+    url = models.CharField(max_length=200, unique=True)
+    click_count = models.PositiveIntegerField(default=0)
+
+
 class Wifi(models.Model):
     name = models.CharField(max_length=50)
     password = models.CharField(max_length=50)
