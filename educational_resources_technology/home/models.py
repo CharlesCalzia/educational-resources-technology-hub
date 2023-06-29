@@ -24,7 +24,6 @@ class Resource(models.Model):
     title = models.CharField(max_length=50, unique=True)
     description = models.TextField()
     image = models.ImageField(upload_to=env("RESOURCES_IMAGES_PATH"), max_length=200)
-    file = models.FileField(upload_to=env("RESOURCES_FILES_PATH"), max_length=200)
     slug = models.URLField(max_length=100, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -47,6 +46,9 @@ def auto_delete_file_on_delete(sender, instance, **kwargs):
 class LinkClick(models.Model):
     url = models.CharField(max_length=200, unique=True)
     click_count = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return self.url
 
 
 class Wifi(models.Model):

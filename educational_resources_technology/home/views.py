@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect
-from django.http import Http404
+from django.http import HttpResponseRedirect, Http404
+from urllib.parse import urlparse
 
-# Create your views here.
 from . import views
 from .models import LinkClick
 
@@ -29,16 +28,23 @@ def support(request):
 
 
 def track_link_click(request, url):
-    url = url.rstrip("/")
-    print(url)
-    if ":" not in url:
-        try:
-            return redirect(url)
-        except:
-            raise Http404("URL does not exist")
-    else:
-        link, created = LinkClick.objects.get_or_create(url=url)
-        link.click_count += 1
-        link.save()
+    if url is None:
+        raise Http404("Invalid URL")
 
+    def is_external_url(request, url):
+        current_domain = request.get_host()
+        parsed_url = urlparse(url)
+        if parsed_url.netloc == "":
+            return False
+        return parsed_url.netloc != current_domain
+
+    url = url.rstrip("/")
+
+    link, created = LinkClick.objects.get_or_create(url=url)
+    link.click_count += 1
+    link.save()
+
+    if is_external_url(request, url):
         return HttpResponseRedirect(url)
+    else:
+        raise Http404("Not recognized URL")

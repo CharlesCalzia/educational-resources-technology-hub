@@ -17,3 +17,4 @@ services:
       - '8080:8080'
     command:
       /data/data/wiktionary_en_simple_all_nopic_2022-07.zim
+      /data/data/beyondourselves_education_jun23.zim

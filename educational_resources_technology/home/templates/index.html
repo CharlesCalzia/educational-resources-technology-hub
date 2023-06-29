@@ -1,6 +1,6 @@
 {% load static %} {% block extrascripts %}
 <script src="{%  static 'js/tailwind.js' %}"></script>
-{% endblock %}
+{% endblock %} {% load custom_filters %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -37,7 +37,8 @@
             <img
               alt="{{resource.title}}"
               class="object-contain w-full h-56"
-              src="https://i.ibb.co/DwMf9yg/educational-resources-technology-logo-1.png"
+              src="{{ resource.image.url|fix_img_path }}"
+              onError="this.onerror=null;this.src='/home/static/images/ert.png';"
             />
 
             <div class="p-6">

@@ -1,3 +1,6 @@
+# Enable SSH
+
+
 sudo apt update -y
 sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -13,4 +16,5 @@ pip install -r requirements.txt
 sudo ./download-default.sh
 
 cd ..
-docker build -t kiwix-serve .
+docker compose build
+docker compose up
