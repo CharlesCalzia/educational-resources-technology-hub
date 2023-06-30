@@ -1,4 +1,0 @@
-Django
-Pillow
-django-environ
-django-admin-extra-buttons

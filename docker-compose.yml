@@ -3,8 +3,8 @@ version: '3.9'
 services:
   app:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ./educational_resources_technology
+      dockerfile: ./Dockerfile
     ports:
       - 8000:8000
     command: bash -c "python educational_resources_technology/manage.py makemigrations && python educational_resources_technology/manage.py migrate && python educational_resources_technology/manage.py runserver 0.0.0.0:8000"
@@ -16,5 +16,4 @@ services:
     ports:
       - '8080:8080'
     command:
-      /data/data/wiktionary_en_simple_all_nopic_2022-07.zim
       /data/data/beyondourselves_education_jun23.zim
