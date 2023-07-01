@@ -8,12 +8,3 @@ services:
     ports:
       - 8000:8000
     command: bash -c "python educational_resources_technology/manage.py makemigrations && python educational_resources_technology/manage.py migrate && python educational_resources_technology/manage.py runserver 0.0.0.0:8000"
-
-  kiwix-serve:
-    image: ghcr.io/kiwix/kiwix-serve
-    volumes:
-      - ./resources:/data
-    ports:
-      - '8080:8080'
-    command:
-      /data/data/beyondourselves_education_jun23.zim
