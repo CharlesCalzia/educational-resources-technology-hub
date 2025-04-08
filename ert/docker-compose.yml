@@ -3,6 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      platform: linux/arm/v7
     ports:
       - "3000:3000"
     volumes:
@@ -15,7 +16,7 @@ services:
 
   kiwix:
     image: ghcr.io/kiwix/kiwix-serve:3.7.0
-    platform: linux/arm64
+    platform: linux/arm/v7
     ports:
       - "8080:8080"
     volumes:

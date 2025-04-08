@@ -1,24 +1,39 @@
 {
   "categories": [
     {
+      "id": "coding",
+      "title": "Programming",
+      "description": "Programming tutorials, coding resources, and development tools"
+    },
+    {
       "id": "general",
       "title": "General",
-      "description": "General educational resources"
+      "description": "General educational resources and reference materials"
     },
     {
-      "id": "science",
-      "title": "Science",
-      "description": "Science-related educational resources"
+      "id": "stem",
+      "title": "STEM",
+      "description": "Science, Technology, Engineering, and Mathematics resources"
     },
     {
-      "id": "math",
-      "title": "Mathematics",
-      "description": "Mathematics educational resources"
+      "id": "humanities",
+      "title": "Humanities",
+      "description": "Humanities and social sciences educational resources"
     },
     {
-        "id": "religious",
-        "title": "Religious",
-        "description": "Religious educational resources"
+      "id": "business",
+      "title": "Business",
+      "description": "Business, entrepreneurship, and management resources"
+    },
+    {
+      "id": "religious",
+      "title": "Religious",
+      "description": "Religious education and faith-based resources"
+    },
+    {
+      "id": "other",
+      "title": "Other",
+      "description": "Miscellaneous educational resources"
     }
   ]
 } 
