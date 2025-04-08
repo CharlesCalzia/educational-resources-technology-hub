@@ -1,22 +1,20 @@
 services:
-  nextjs:
+  app:
     build:
       context: .
       dockerfile: Dockerfile
-      platform: linux/arm/v7
     ports:
       - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - HOSTNAME=0.0.0.0
     volumes:
       - ./resources:/app/resources
-      - ./public:/app/public
-    environment:
-      - RESOURCES_DIR=/app/resources
     networks:
       - app-network
 
   kiwix:
     image: ghcr.io/kiwix/kiwix-serve:3.7.0
-    platform: linux/arm/v7
     ports:
       - "8080:8080"
     volumes:
