@@ -1,0 +1,29 @@
+services:
+  nextjs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./resources:/app/resources
+      - ./public:/app/public
+    environment:
+      - RESOURCES_DIR=/app/resources
+    networks:
+      - app-network
+
+  kiwix:
+    image: ghcr.io/kiwix/kiwix-serve:3.7.0
+    platform: linux/arm64
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./zim:/data
+    command: '*.zim'
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge 

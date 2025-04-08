@@ -1,0 +1,24 @@
+{
+  "categories": [
+    {
+      "id": "general",
+      "title": "General",
+      "description": "General educational resources"
+    },
+    {
+      "id": "science",
+      "title": "Science",
+      "description": "Science-related educational resources"
+    },
+    {
+      "id": "math",
+      "title": "Mathematics",
+      "description": "Mathematics educational resources"
+    },
+    {
+        "id": "religious",
+        "title": "Religious",
+        "description": "Religious educational resources"
+    }
+  ]
+} 
